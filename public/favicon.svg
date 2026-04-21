@@ -1,27 +1,32 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
-  <!-- Background square with rounded corners -->
+  <!-- Background -->
   <rect width="48" height="48" rx="10" fill="#f97316"/>
 
-  <!-- Blueprint grid lines (subtle white) -->
-  <line x1="8" y1="16" x2="40" y2="16" stroke="white" stroke-width="0.6" stroke-opacity="0.3"/>
-  <line x1="8" y1="24" x2="40" y2="24" stroke="white" stroke-width="0.6" stroke-opacity="0.3"/>
-  <line x1="8" y1="32" x2="40" y2="32" stroke="white" stroke-width="0.6" stroke-opacity="0.3"/>
-  <line x1="16" y1="8" x2="16" y2="40" stroke="white" stroke-width="0.6" stroke-opacity="0.3"/>
-  <line x1="24" y1="8" x2="24" y2="40" stroke="white" stroke-width="0.6" stroke-opacity="0.3"/>
-  <line x1="32" y1="8" x2="32" y2="40" stroke="white" stroke-width="0.6" stroke-opacity="0.3"/>
+  <!-- ── Neural network: 3 → 2 → 1 architecture ── -->
 
-  <!-- Architect compass / triangle set-square shape -->
-  <!-- Main triangle (set square) -->
-  <path d="M12 36 L12 14 L34 36 Z" stroke="white" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+  <!-- Layer connections (input → hidden) -->
+  <line x1="12" y1="12" x2="26" y2="18" stroke="white" stroke-width="1.2" stroke-opacity="0.6"/>
+  <line x1="12" y1="12" x2="26" y2="30" stroke="white" stroke-width="1.2" stroke-opacity="0.6"/>
+  <line x1="12" y1="24" x2="26" y2="18" stroke="white" stroke-width="1.2" stroke-opacity="0.6"/>
+  <line x1="12" y1="24" x2="26" y2="30" stroke="white" stroke-width="1.2" stroke-opacity="0.6"/>
+  <line x1="12" y1="36" x2="26" y2="18" stroke="white" stroke-width="1.2" stroke-opacity="0.6"/>
+  <line x1="12" y1="36" x2="26" y2="30" stroke="white" stroke-width="1.2" stroke-opacity="0.6"/>
 
-  <!-- Right angle marker at bottom-left corner -->
-  <polyline points="12,31 17,31 17,36" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Layer connections (hidden → output) -->
+  <line x1="26" y1="18" x2="38" y2="24" stroke="white" stroke-width="1.5" stroke-opacity="0.9"/>
+  <line x1="26" y1="30" x2="38" y2="24" stroke="white" stroke-width="1.5" stroke-opacity="0.9"/>
 
-  <!-- Compass needle / measurement tick on hypotenuse midpoint -->
-  <circle cx="23" cy="25" r="1.6" fill="white"/>
+  <!-- Input layer nodes (3) -->
+  <circle cx="12" cy="12" r="3.2" fill="white"/>
+  <circle cx="12" cy="24" r="3.2" fill="white"/>
+  <circle cx="12" cy="36" r="3.2" fill="white"/>
 
-  <!-- Small node dots at triangle vertices -->
-  <circle cx="12" cy="14" r="1.8" fill="white"/>
-  <circle cx="12" cy="36" r="1.8" fill="white"/>
-  <circle cx="34" cy="36" r="1.8" fill="white"/>
+  <!-- Hidden layer nodes (2) -->
+  <circle cx="26" cy="18" r="3.2" fill="white"/>
+  <circle cx="26" cy="30" r="3.2" fill="white"/>
+
+  <!-- Output node (1) — slightly larger, the "architect" result -->
+  <circle cx="38" cy="24" r="4" fill="white"/>
+  <!-- Inner dot on output to mark it as the key node -->
+  <circle cx="38" cy="24" r="1.8" fill="#f97316"/>
 </svg>
