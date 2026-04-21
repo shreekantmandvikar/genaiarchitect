@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: hsl(240 10% 3.9%);
+  --primary: hsl(24.6 95% 53.1%);       /* orange */
+  --primary-dark: hsl(24.6 95% 43%);
+  --secondary: hsl(240 5.9% 10%);       /* near black */
+  --muted: hsl(240 4.8% 95.9%);         /* light grey */
+  --muted-foreground: hsl(240 3.8% 46.1%);
+  --border: hsl(240 5.9% 90%);
+  --input: hsl(240 5.9% 80%);
+  --arch-grey: #3a3b3c;
+  --arch-green: #88cc00;
+  --radius: 0.5rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Roboto Flex', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Text selection matches architechtures.com */
+::selection {
+  background: #000;
+  color: #fff;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--muted); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* Typing animation */
+@keyframes typing-dot {
+  0%, 60%, 100% { opacity: 0.3; transform: scale(1); }
+  30% { opacity: 1; transform: scale(1.2); }
+}
+
+.chat-typing span {
+  animation: typing-dot 1.4s infinite;
+  display: inline-block;
+}
+.chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+.chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+/* Dense-style headline utility */
+.font-dense {
+  font-family: 'Roboto Flex', Arial, sans-serif;
+  font-variation-settings: 'wdth' 75, 'wght' 800;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+/* Subtle grid background for sections */
+.grid-bg {
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-color: var(--background);
+}
