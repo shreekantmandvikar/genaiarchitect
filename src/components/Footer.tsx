@@ -6,7 +6,7 @@ export default function Footer() {
           genai<span style={{ color: 'var(--primary)' }}>architect</span>
         </span>
         <p className="text-xs text-gray-400">
-          © 2025 Shreekant Mandvikar · AI-generated advice; verify before production use.
+          © 2026 Shreekant Mandvikar · AI-generated advice; verify before production use.
         </p>
         <div className="flex gap-6 text-xs text-gray-400">
           <a href="#" className="hover:text-black transition-colors no-underline">Privacy</a>
