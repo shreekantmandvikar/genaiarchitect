@@ -11,7 +11,7 @@ function ScrollToTop() {
 
 export default function Layout() {
   return (
-    <div style={{ background: 'var(--background)', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--color-bg)', minHeight: '100vh' }}>
       <ScrollToTop />
       <Navbar />
       <main className="pt-14">

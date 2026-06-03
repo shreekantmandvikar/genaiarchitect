@@ -1,24 +1,110 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
 @import "tailwindcss";
 
+/* ============================================================
+   GenAI Architect — Brand Design Tokens
+   Inspired by Moveworks editorial aesthetic
+   ============================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: hsl(240 10% 3.9%);
-  --primary: hsl(24.6 95% 53.1%);       /* orange */
-  --primary-dark: hsl(24.6 95% 43%);
-  --secondary: hsl(240 5.9% 10%);       /* near black */
-  --muted: hsl(240 4.8% 95.9%);         /* light grey */
-  --muted-foreground: hsl(240 3.8% 46.1%);
-  --border: hsl(240 5.9% 90%);
-  --input: hsl(240 5.9% 80%);
-  --arch-grey: #3a3b3c;
-  --arch-green: #88cc00;
-  --radius: 0.5rem;
+
+  /* --- Color Palette --- */
+  --color-bg:           #F2EFE6;
+  --color-bg-surface:   #FFFFFF;
+  --color-bg-muted:     #E8E5DB;
+
+  --color-text-primary:   #111111;
+  --color-text-body:      #3B3B3B;
+  --color-text-muted:     #7A7870;
+  --color-text-inverse:   #F2EFE6;
+
+  --color-accent:          #7B7EC8;
+  --color-accent-hover:    #6366B0;
+  --color-accent-subtle:   #EEEEF8;
+
+  --color-border:         #E8E5DB;
+  --color-border-strong:  #C8C5BC;
+  --color-border-dark:    #111111;
+
+  /* --- Typography --- */
+  --font-display: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
+
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  2rem;
+  --text-4xl:  2.75rem;
+  --text-5xl:  3.75rem;
+  --text-6xl:  5rem;
+
+  --font-weight-regular: 400;
+  --font-weight-medium:  500;
+  --font-weight-bold:    700;
+
+  --leading-tight:  1.15;
+  --leading-snug:   1.35;
+  --leading-normal: 1.6;
+  --leading-loose:  1.8;
+
+  --tracking-tight:  -0.03em;
+  --tracking-normal:  0em;
+  --tracking-wide:    0.04em;
+  --tracking-wider:   0.08em;
+
+  /* --- Spacing --- */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* --- Border Radius --- */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   20px;
+  --radius-pill: 9999px;
+
+  /* --- Shadows --- */
+  --shadow-sm:  0 1px 3px rgba(17, 17, 17, 0.06);
+  --shadow-md:  0 4px 16px rgba(17, 17, 17, 0.08);
+  --shadow-lg:  0 8px 32px rgba(17, 17, 17, 0.10);
+
+  /* --- Layout --- */
+  --container-xl: 1280px;
+
+  /* --- Transitions --- */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  /* --- Legacy aliases (components migrate automatically) --- */
+  --background:       var(--color-bg);
+  --foreground:       var(--color-text-primary);
+  --primary:          var(--color-accent);
+  --primary-dark:     var(--color-accent-hover);
+  --secondary:        var(--color-text-primary);
+  --muted:            var(--color-bg-muted);
+  --muted-foreground: var(--color-text-muted);
+  --border:           var(--color-border);
+  --input:            var(--color-border-strong);
+  --arch-grey:        var(--color-text-body);
+  --radius:           var(--radius-md);
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html {
   -webkit-font-smoothing: antialiased;
@@ -26,9 +112,12 @@ html {
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: 'Roboto Flex', Arial, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text-body);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--leading-normal);
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -39,18 +128,16 @@ body {
   min-height: 100vh;
 }
 
-/* Text selection matches architechtures.com */
 ::selection {
-  background: #000;
-  color: #fff;
+  background: var(--color-text-primary);
+  color: var(--color-text-inverse);
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--muted); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+::-webkit-scrollbar-track { background: var(--color-bg-muted); }
+::-webkit-scrollbar-thumb { background: var(--color-border-strong); border-radius: 2px; }
 
-/* Typing animation */
+/* --- Typing animation --- */
 @keyframes typing-dot {
   0%, 60%, 100% { opacity: 0.3; transform: scale(1); }
   30% { opacity: 1; transform: scale(1.2); }
@@ -63,19 +150,104 @@ body {
 .chat-typing span:nth-child(2) { animation-delay: 0.2s; }
 .chat-typing span:nth-child(3) { animation-delay: 0.4s; }
 
-/* Dense-style headline utility */
+/* --- Display headline utility --- */
 .font-dense {
-  font-family: 'Roboto Flex', Arial, sans-serif;
-  font-variation-settings: 'wdth' 75, 'wght' 800;
+  font-family: var(--font-display);
   font-weight: 800;
   letter-spacing: -0.03em;
 }
 
-/* Subtle grid background for sections */
+/* --- Subtle grid background for sections --- */
 .grid-bg {
   background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    linear-gradient(var(--color-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
   background-size: 40px 40px;
-  background-color: var(--background);
+  background-color: var(--color-bg);
+}
+
+/* --- Utility classes --- */
+.bg-canvas   { background-color: var(--color-bg); }
+.bg-surface  { background-color: var(--color-bg-surface); }
+.bg-muted    { background-color: var(--color-bg-muted); }
+.bg-accent   { background-color: var(--color-accent); }
+
+.text-primary { color: var(--color-text-primary); }
+.text-body    { color: var(--color-text-body); }
+.text-muted   { color: var(--color-text-muted); }
+.text-accent  { color: var(--color-accent); }
+.text-inverse { color: var(--color-text-inverse); }
+
+.border-default { border: 1px solid var(--color-border); }
+.border-strong  { border: 1px solid var(--color-border-strong); }
+.border-dark    { border: 1.5px solid var(--color-border-dark); }
+
+.rounded-pill { border-radius: var(--radius-pill); }
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background-color: var(--color-accent);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+  text-decoration: none;
+}
+.btn-primary:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-1px);
+}
+.btn-primary:active { transform: translateY(0); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background-color: transparent;
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--color-border-dark);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+  text-decoration: none;
+}
+.btn-outline:hover {
+  background-color: var(--color-text-primary);
+  color: var(--color-text-inverse);
+}
+
+.card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin-block: var(--space-8);
 }

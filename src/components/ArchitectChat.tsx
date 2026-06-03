@@ -84,18 +84,30 @@ export default function ArchitectChat() {
   };
 
   return (
-    <div className="flex h-[calc(100vh-3.5rem)] bg-white overflow-hidden">
+    <div
+      className="flex h-[calc(100vh-3.5rem)] overflow-hidden"
+      style={{ background: 'var(--color-bg-surface)' }}
+    >
       {/* ── Sidebar ─────────────────────────────────────────── */}
       <aside
-        className={`flex-shrink-0 flex flex-col border-r border-gray-200 bg-gray-50 transition-all duration-200 ${sidebarOpen ? 'w-64' : 'w-0 overflow-hidden'}`}
+        className={`flex-shrink-0 flex flex-col transition-all duration-200 ${sidebarOpen ? 'w-64' : 'w-0 overflow-hidden'}`}
+        style={{ borderRight: '1px solid var(--color-border)', background: 'var(--color-bg-muted)' }}
       >
         {/* Sidebar header */}
-        <div className="flex items-center justify-between px-4 py-4 border-b border-gray-200">
-          <span className="text-xs font-semibold uppercase tracking-widest text-gray-400">Conversations</span>
+        <div
+          className="flex items-center justify-between px-4 py-4"
+          style={{ borderBottom: '1px solid var(--color-border)' }}
+        >
+          <span
+            className="text-xs font-semibold uppercase tracking-widest"
+            style={{ color: 'var(--color-text-muted)' }}
+          >
+            Conversations
+          </span>
           <button
             onClick={startNew}
-            className="flex items-center gap-1 text-xs font-semibold px-2 py-1 rounded-md transition-colors hover:bg-gray-200"
-            style={{ color: 'var(--primary)' }}
+            className="flex items-center gap-1 text-xs font-semibold px-2 py-1 rounded-md transition-colors"
+            style={{ color: 'var(--color-accent)' }}
           >
             <Plus size={12} /> New
           </button>
@@ -107,25 +119,37 @@ export default function ArchitectChat() {
             <button
               key={c.id}
               onClick={() => setActiveId(c.id)}
-              className={`w-full text-left px-4 py-3 flex items-start gap-3 transition-colors hover:bg-gray-100 ${c.id === activeId ? 'bg-white border-r-2' : ''}`}
-              style={c.id === activeId ? { borderRightColor: 'var(--primary)' } : {}}
+              className={`w-full text-left px-4 py-3 flex items-start gap-3 transition-colors ${c.id === activeId ? 'border-r-2' : ''}`}
+              style={{
+                background: c.id === activeId ? 'var(--color-bg-surface)' : 'transparent',
+                borderRightColor: c.id === activeId ? 'var(--color-accent)' : 'transparent',
+              }}
             >
-              <MessageSquare size={14} className="flex-shrink-0 mt-0.5 text-gray-400" />
+              <MessageSquare size={14} className="flex-shrink-0 mt-0.5" style={{ color: 'var(--color-text-muted)' }} />
               <div className="min-w-0">
-                <p className="text-xs font-medium text-black truncate">{c.title}</p>
-                {c.preview && <p className="text-xs text-gray-400 truncate mt-0.5">{c.preview}</p>}
+                <p className="text-xs font-medium truncate" style={{ color: 'var(--color-text-primary)' }}>{c.title}</p>
+                {c.preview && <p className="text-xs truncate mt-0.5" style={{ color: 'var(--color-text-muted)' }}>{c.preview}</p>}
               </div>
             </button>
           ))}
         </div>
 
         {/* Sidebar footer — subscribe nudge */}
-        <div className="p-4 border-t border-gray-200">
-          <div className="rounded-lg bg-white border border-gray-200 p-3">
-            <p className="text-xs font-semibold text-black mb-1 flex items-center gap-1"><Lock size={11} /> Save paths</p>
-            <p className="text-xs text-gray-400 mb-2">Subscribe to unlock conversation history & full templates.</p>
-            <button className="w-full text-xs font-semibold py-1.5 rounded-md text-white transition-opacity hover:opacity-90"
-              style={{ background: 'var(--primary)' }}>
+        <div className="p-4" style={{ borderTop: '1px solid var(--color-border)' }}>
+          <div
+            className="rounded-lg p-3"
+            style={{ background: 'var(--color-bg-surface)', border: '1px solid var(--color-border)' }}
+          >
+            <p className="text-xs font-semibold mb-1 flex items-center gap-1" style={{ color: 'var(--color-text-primary)' }}>
+              <Lock size={11} /> Save paths
+            </p>
+            <p className="text-xs mb-2" style={{ color: 'var(--color-text-muted)' }}>
+              Subscribe to unlock conversation history &amp; full templates.
+            </p>
+            <button
+              className="w-full text-xs font-semibold py-1.5 rounded-md text-white transition-opacity hover:opacity-90"
+              style={{ background: 'var(--color-accent)' }}
+            >
               ☕ Subscribe Free
             </button>
           </div>
@@ -135,43 +159,69 @@ export default function ArchitectChat() {
       {/* ── Main chat area ───────────────────────────────────── */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Chat header */}
-        <div className="flex items-center justify-between px-5 py-3 border-b border-gray-200 bg-white flex-shrink-0">
+        <div
+          className="flex items-center justify-between px-5 py-3 flex-shrink-0"
+          style={{ borderBottom: '1px solid var(--color-border)', background: 'var(--color-bg-surface)' }}
+        >
           <div className="flex items-center gap-3">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="p-1.5 rounded-md hover:bg-gray-100 transition-colors text-gray-400"
+              className="p-1.5 rounded-md transition-colors"
+              style={{ color: 'var(--color-text-muted)' }}
             >
               <ChevronRight size={16} className={`transition-transform ${sidebarOpen ? 'rotate-180' : ''}`} />
             </button>
-            <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm text-white font-bold flex-shrink-0"
-              style={{ background: 'var(--primary)' }}>A</div>
+            <div
+              className="w-8 h-8 rounded-full flex items-center justify-center text-sm text-white font-bold flex-shrink-0"
+              style={{ background: 'var(--color-accent)' }}
+            >A</div>
             <div>
-              <div className="text-sm font-semibold text-black">Senior GenAI Architect</div>
-              <div className="flex items-center gap-1 text-xs text-gray-400">
+              <div className="text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>Senior GenAI Architect</div>
+              <div className="flex items-center gap-1 text-xs" style={{ color: 'var(--color-text-muted)' }}>
                 <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block"></span>
                 Trained on Shree's Frameworks
               </div>
             </div>
           </div>
-          <div className="hidden sm:flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-full border border-gray-200 bg-gray-50"
-            style={{ color: 'var(--arch-green)' }}>
+          <div
+            className="hidden sm:flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-full"
+            style={{
+              border: '1px solid var(--color-border)',
+              background: 'var(--color-bg-muted)',
+              color: 'var(--color-accent)',
+            }}
+          >
             <Sparkles size={11} /> RAG-Powered
           </div>
         </div>
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto px-5 py-6 flex flex-col gap-4">
+        <div
+          className="flex-1 overflow-y-auto px-5 py-6 flex flex-col gap-4"
+          style={{ background: 'var(--color-bg)' }}
+        >
           {active.messages.map((msg, i) => (
             <div key={i} className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
-              <div className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 text-xs text-white font-bold"
-                style={{ background: msg.role === 'user' ? 'var(--secondary)' : 'var(--primary)' }}>
+              <div
+                className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 text-xs text-white font-bold"
+                style={{ background: msg.role === 'user' ? 'var(--color-text-primary)' : 'var(--color-accent)' }}
+              >
                 {msg.role === 'user' ? <User size={13} color="#fff" /> : 'A'}
               </div>
-              <div className="max-w-2xl rounded-2xl px-4 py-3 text-sm leading-relaxed"
+              <div
+                className="max-w-2xl rounded-2xl px-4 py-3 text-sm leading-relaxed"
                 style={msg.role === 'assistant'
-                  ? { background: 'var(--muted)', color: 'var(--foreground)', border: '1px solid var(--border)' }
-                  : { background: 'var(--secondary)', color: '#fff' }
-                }>
+                  ? {
+                      background: 'var(--color-bg-surface)',
+                      color: 'var(--color-text-body)',
+                      border: '1px solid var(--color-border)',
+                    }
+                  : {
+                      background: 'var(--color-text-primary)',
+                      color: 'var(--color-text-inverse)',
+                    }
+                }
+              >
                 <MessageContent content={msg.content} />
               </div>
             </div>
@@ -179,13 +229,18 @@ export default function ArchitectChat() {
 
           {isTyping && (
             <div className="flex gap-3">
-              <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs text-white font-bold"
-                style={{ background: 'var(--primary)' }}>A</div>
-              <div className="rounded-2xl px-4 py-3 border border-gray-200" style={{ background: 'var(--muted)' }}>
+              <div
+                className="w-7 h-7 rounded-full flex items-center justify-center text-xs text-white font-bold"
+                style={{ background: 'var(--color-accent)' }}
+              >A</div>
+              <div
+                className="rounded-2xl px-4 py-3"
+                style={{ background: 'var(--color-bg-surface)', border: '1px solid var(--color-border)' }}
+              >
                 <div className="chat-typing flex gap-1 items-center h-4">
-                  <span className="w-1.5 h-1.5 rounded-full bg-gray-400"></span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-gray-400"></span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-gray-400"></span>
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--color-text-muted)' }}></span>
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--color-text-muted)' }}></span>
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--color-text-muted)' }}></span>
                 </div>
               </div>
             </div>
@@ -195,11 +250,21 @@ export default function ArchitectChat() {
 
         {/* Quick topics — shown only on new conversation */}
         {active.messages.length === 1 && (
-          <div className="px-5 pb-3 flex flex-wrap gap-2">
+          <div
+            className="px-5 pb-3 flex flex-wrap gap-2"
+            style={{ background: 'var(--color-bg)' }}
+          >
             {quickStartTopics.map((topic) => (
-              <button key={topic} onClick={() => sendMessage(topic)}
-                className="text-xs px-3 py-1.5 rounded-full border border-gray-300 font-medium transition-all hover:border-black hover:text-black"
-                style={{ color: 'var(--arch-grey)' }}>
+              <button
+                key={topic}
+                onClick={() => sendMessage(topic)}
+                className="text-xs px-3 py-1.5 rounded-full font-medium transition-all"
+                style={{
+                  border: '1px solid var(--color-border-strong)',
+                  color: 'var(--color-text-body)',
+                  background: 'var(--color-bg-surface)',
+                }}
+              >
                 {topic}
               </button>
             ))}
@@ -207,7 +272,10 @@ export default function ArchitectChat() {
         )}
 
         {/* Input bar */}
-        <div className="flex-shrink-0 border-t border-gray-200 px-5 py-4 bg-white">
+        <div
+          className="flex-shrink-0 px-5 py-4"
+          style={{ borderTop: '1px solid var(--color-border)', background: 'var(--color-bg-surface)' }}
+        >
           <form onSubmit={handleSubmit} className="flex gap-3 max-w-3xl mx-auto">
             <input
               type="text"
@@ -215,15 +283,23 @@ export default function ArchitectChat() {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask your architecture question..."
               disabled={isTyping}
-              className="flex-1 rounded-xl px-4 py-3 text-sm outline-none border border-gray-300 bg-white focus:border-black transition-colors"
+              className="flex-1 rounded-xl px-4 py-3 text-sm outline-none transition-colors"
+              style={{
+                border: '1px solid var(--color-border-strong)',
+                background: 'var(--color-bg)',
+                color: 'var(--color-text-primary)',
+              }}
             />
-            <button type="submit" disabled={!input.trim() || isTyping}
+            <button
+              type="submit"
+              disabled={!input.trim() || isTyping}
               className="w-11 h-11 rounded-xl flex items-center justify-center transition-opacity hover:opacity-90 disabled:opacity-40 text-white flex-shrink-0"
-              style={{ background: 'var(--primary)' }}>
+              style={{ background: 'var(--color-accent)' }}
+            >
               <Send size={16} />
             </button>
           </form>
-          <p className="text-xs mt-2 text-center text-gray-400">
+          <p className="text-xs mt-2 text-center" style={{ color: 'var(--color-text-muted)' }}>
             AI-generated advice · Verify before production implementation
           </p>
         </div>
@@ -242,7 +318,7 @@ function MessageContent({ content }: { content: string }) {
         if (/^\d+\./.test(line))
           return <p key={i} className="pl-3">{renderInline(line)}</p>;
         if (line.startsWith('```') || line.startsWith('|'))
-          return <p key={i} className="font-mono text-xs opacity-70 bg-white/50 px-2 py-0.5 rounded">{line}</p>;
+          return <p key={i} className="font-mono text-xs opacity-70 px-2 py-0.5 rounded" style={{ background: 'rgba(0,0,0,0.05)' }}>{line}</p>;
         if (line.trim() === '') return <br key={i} />;
         return <p key={i}>{renderInline(line)}</p>;
       })}

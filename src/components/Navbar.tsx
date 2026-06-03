@@ -18,21 +18,27 @@ function AuthModal({ onClose }: AuthModalProps) {
     <div className="fixed inset-0 z-[100] flex items-center justify-center px-4" onClick={onClose}>
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
       <div
-        className="relative bg-white rounded-2xl shadow-2xl w-full max-w-sm p-8 border border-gray-200"
+        className="relative rounded-2xl shadow-2xl w-full max-w-sm p-8"
+        style={{ background: 'var(--color-bg-surface)', border: '1px solid var(--color-border)' }}
         onClick={(e) => e.stopPropagation()}
       >
-        <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-black transition-colors">
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 transition-colors"
+          style={{ color: 'var(--color-text-muted)' }}
+        >
           <X size={18} />
         </button>
 
         <div className="text-center mb-6">
-          <div className="font-dense text-2xl text-black mb-1">
-            genai<span style={{ color: 'var(--primary)' }}>architect</span>
+          <div className="font-dense text-2xl mb-1" style={{ color: 'var(--color-text-primary)' }}>
+            genai<span style={{ color: 'var(--color-accent)' }}>architect</span>
           </div>
-          <p className="text-sm text-gray-500 font-light">Sign in to save paths & access templates</p>
+          <p className="text-sm font-light" style={{ color: 'var(--color-text-muted)' }}>
+            Sign in to save paths &amp; access templates
+          </p>
         </div>
 
-        {/* LinkedIn OAuth button */}
         <button
           className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-xl font-semibold text-sm text-white transition-opacity hover:opacity-90 mb-4"
           style={{ background: '#0A66C2' }}
@@ -45,22 +51,31 @@ function AuthModal({ onClose }: AuthModalProps) {
         </button>
 
         <div className="relative my-4">
-          <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-gray-200" /></div>
-          <div className="relative flex justify-center"><span className="bg-white px-3 text-xs text-gray-400">or</span></div>
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t" style={{ borderColor: 'var(--color-border)' }} />
+          </div>
+          <div className="relative flex justify-center">
+            <span className="px-3 text-xs" style={{ background: 'var(--color-bg-surface)', color: 'var(--color-text-muted)' }}>or</span>
+          </div>
         </div>
 
-        {/* Email */}
         <div className="space-y-3">
-          <input type="email" placeholder="your@company.com"
-            className="w-full px-4 py-3 rounded-xl text-sm border border-gray-300 outline-none focus:border-black transition-colors" />
-          <button className="w-full py-3 rounded-xl text-sm font-semibold text-white transition-opacity hover:opacity-90"
-            style={{ background: 'var(--primary)' }}>
+          <input
+            type="email"
+            placeholder="your@company.com"
+            className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-colors"
+            style={{ border: '1px solid var(--color-border-strong)', background: 'var(--color-bg)', color: 'var(--color-text-primary)' }}
+          />
+          <button
+            className="w-full py-3 rounded-xl text-sm font-semibold text-white transition-opacity hover:opacity-90"
+            style={{ background: 'var(--color-accent)' }}
+          >
             Continue with Email
           </button>
         </div>
 
-        <p className="text-xs text-center text-gray-400 mt-4">
-          By signing in you agree to our Terms & Privacy Policy
+        <p className="text-xs text-center mt-4" style={{ color: 'var(--color-text-muted)' }}>
+          By signing in you agree to our Terms &amp; Privacy Policy
         </p>
       </div>
     </div>
@@ -76,23 +91,29 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
+      <nav
+        className="fixed top-0 left-0 right-0 z-50"
+        style={{ background: 'var(--color-bg-surface)', borderBottom: '1px solid var(--color-border)' }}
+      >
         <div className="max-w-6xl mx-auto px-5 h-14 flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="font-dense text-xl tracking-tight text-black no-underline">
-            genai<span style={{ color: 'var(--primary)' }}>architect</span>
+          <Link to="/" className="font-dense text-xl tracking-tight no-underline" style={{ color: 'var(--color-text-primary)' }}>
+            genai<span style={{ color: 'var(--color-accent)' }}>architect</span>
           </Link>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map(({ label, to }) => (
-              <Link key={to} to={to}
-                className="text-sm font-medium no-underline transition-colors hover:text-black"
+              <Link
+                key={to}
+                to={to}
+                className="text-sm font-medium no-underline transition-colors"
                 style={{
-                  color: isActive(to) ? '#000' : 'var(--arch-grey)',
-                  borderBottom: isActive(to) ? '2px solid var(--primary)' : '2px solid transparent',
+                  color: isActive(to) ? 'var(--color-text-primary)' : 'var(--color-text-body)',
+                  borderBottom: isActive(to) ? '2px solid var(--color-accent)' : '2px solid transparent',
                   paddingBottom: '2px',
-                }}>
+                }}
+              >
                 {label}
               </Link>
             ))}
@@ -102,41 +123,62 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <button
               onClick={() => setShowAuth(true)}
-              className="flex items-center gap-1.5 text-sm font-medium px-3 py-2 rounded-lg border border-gray-200 transition-colors hover:bg-gray-50"
-              style={{ color: 'var(--arch-grey)' }}
+              className="flex items-center gap-1.5 text-sm font-medium px-3 py-2 rounded-lg transition-colors"
+              style={{
+                color: 'var(--color-text-body)',
+                border: '1px solid var(--color-border-strong)',
+              }}
             >
               <LogIn size={14} /> Sign In
             </button>
-            <Link to="/subscribe"
-              className="text-sm px-4 py-2 rounded-lg font-semibold text-white transition-opacity hover:opacity-90 no-underline"
-              style={{ background: 'var(--primary)' }}>
+            <Link
+              to="/subscribe"
+              className="text-sm px-4 py-2 rounded-pill font-semibold text-white transition-opacity hover:opacity-90 no-underline"
+              style={{ background: 'var(--color-accent)' }}
+            >
               Subscribe Free
             </Link>
           </div>
 
           {/* Mobile toggle */}
-          <button className="md:hidden text-gray-500" onClick={() => setOpen(!open)}>
+          <button
+            className="md:hidden"
+            style={{ color: 'var(--color-text-muted)' }}
+            onClick={() => setOpen(!open)}
+          >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
 
         {open && (
-          <div className="md:hidden border-t border-gray-200 px-5 py-4 flex flex-col gap-4 bg-white">
+          <div
+            className="md:hidden px-5 py-4 flex flex-col gap-4"
+            style={{ borderTop: '1px solid var(--color-border)', background: 'var(--color-bg-surface)' }}
+          >
             {navLinks.map(({ label, to }) => (
-              <Link key={to} to={to} className="text-sm font-medium no-underline"
-                style={{ color: isActive(to) ? '#000' : 'var(--arch-grey)' }}
-                onClick={() => setOpen(false)}>
+              <Link
+                key={to}
+                to={to}
+                className="text-sm font-medium no-underline"
+                style={{ color: isActive(to) ? 'var(--color-text-primary)' : 'var(--color-text-body)' }}
+                onClick={() => setOpen(false)}
+              >
                 {label}
               </Link>
             ))}
-            <button onClick={() => { setShowAuth(true); setOpen(false); }}
-              className="text-sm px-4 py-2 rounded-lg font-semibold border border-gray-300 w-full text-black">
+            <button
+              onClick={() => { setShowAuth(true); setOpen(false); }}
+              className="text-sm px-4 py-2 rounded-lg font-semibold w-full"
+              style={{ border: '1px solid var(--color-border-strong)', color: 'var(--color-text-primary)', background: 'transparent' }}
+            >
               Sign In
             </button>
-            <Link to="/subscribe"
-              className="text-sm px-4 py-2 rounded-lg font-semibold text-white w-full text-center no-underline block"
-              style={{ background: 'var(--primary)' }}
-              onClick={() => setOpen(false)}>
+            <Link
+              to="/subscribe"
+              className="text-sm px-4 py-2 rounded-pill font-semibold text-white w-full text-center no-underline block"
+              style={{ background: 'var(--color-accent)' }}
+              onClick={() => setOpen(false)}
+            >
               Subscribe Free
             </Link>
           </div>
